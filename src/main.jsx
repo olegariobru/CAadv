@@ -17,13 +17,42 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeArea, setActiveArea] = useState(0)
   const heroVisualRef = useRef(null)
+  const navigationAnimation = useRef(null)
+  const navigationTimer = useRef(null)
+  const replayNavigation = () => {
+    const section = navigationAnimation.current
+    if (!section) return
+    navigationAnimation.current = null
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    section.classList.remove('section-entered')
+    void section.offsetWidth
+    section.classList.add('section-entered')
+  }
+  const animateNavigation = id => {
+    setMenuOpen(false)
+    navigationAnimation.current = document.getElementById(id)
+    window.clearTimeout(navigationTimer.current)
+    navigationTimer.current = window.setTimeout(replayNavigation, 180)
+  }
+  useEffect(() => {
+    const onScroll = () => {
+      if (!navigationAnimation.current) return
+      window.clearTimeout(navigationTimer.current)
+      navigationTimer.current = window.setTimeout(replayNavigation, 140)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.clearTimeout(navigationTimer.current)
+    }
+  }, [])
   useEffect(() => {
     const sections = document.querySelectorAll('#atuacao, #metodo')
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
     if (preference.matches || !('IntersectionObserver' in window)) return
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && navigationAnimation.current !== entry.target) {
           entry.target.classList.add('section-entered')
           observer.unobserve(entry.target)
         }
@@ -88,9 +117,9 @@ function App() {
       </a>
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen}>Menu</button>
       <nav className={menuOpen ? 'open' : ''} aria-label="Navegação principal">
-        <a href="#atuacao" onClick={() => setMenuOpen(false)}>Atuação</a>
+        <a href="#atuacao" onClick={() => animateNavigation('atuacao')}>Atuação</a>
         <a href="#sobre" onClick={() => setMenuOpen(false)}>Sobre</a>
-        <a href="#metodo" onClick={() => setMenuOpen(false)}>Como funciona</a>
+        <a href="#metodo" onClick={() => animateNavigation('metodo')}>Como funciona</a>
         <a className="nav-contact" href="#contato" onClick={() => setMenuOpen(false)}>Fale comigo <Arrow /></a>
       </nav>
     </header>
