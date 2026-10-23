@@ -2,8 +2,6 @@
 
 Site institucional desenvolvido em React para apresentar a atuação de Carolina Alcântara em Direito Tributário, Direito Empresarial e consultoria jurídica preventiva.
 
-[Acessar o site publicado](https://advocacia-clareza-estrategia.savoryflint1.chatgpt.site)
-
 <p align="center">
   <img src="public/assets/carolina-alcantara-logo.png" alt="Carolina Alcântara — Advocacia e Consultoria Jurídica" width="620">
 </p>
@@ -12,11 +10,11 @@ Site institucional desenvolvido em React para apresentar a atuação de Carolina
 
 <table>
   <tr>
-    <td width="50%">
-      <img src="public/assets/carolina-alcantara-portrait.png" alt="Retrato profissional de Carolina Alcântara">
+    <td width="68%" valign="top">
+      <img src="public/screenshots/home-desktop.png" alt="Página inicial do site em um computador">
     </td>
-    <td width="50%">
-      <img src="public/assets/carolina-alcantara-about.png" alt="Carolina Alcântara trabalhando em seu escritório">
+    <td width="32%" valign="top">
+      <img src="public/screenshots/home-mobile.png" alt="Página inicial do site em um celular">
     </td>
   </tr>
 </table>
