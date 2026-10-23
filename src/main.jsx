@@ -17,6 +17,21 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeArea, setActiveArea] = useState(0)
   const heroVisualRef = useRef(null)
+  useEffect(() => {
+    const sections = document.querySelectorAll('#atuacao, #metodo')
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (preference.matches || !('IntersectionObserver' in window)) return
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-entered')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.12 })
+    sections.forEach(section => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const visual = heroVisualRef.current
