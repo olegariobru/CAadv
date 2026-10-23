@@ -21,12 +21,12 @@ function App() {
       frame = undefined
       const rect = visual.getBoundingClientRect()
       const progress = Math.max(-1, Math.min(1, (window.innerHeight * 0.5 - rect.top) / window.innerHeight))
-      visual.style.setProperty('--orbit-turn', `${progress * 22}deg`)
-      visual.style.setProperty('--orbit-y', `${progress * 24}px`)
+      visual.style.setProperty('--orbit-turn', `${progress * 10}deg`)
+      visual.style.setProperty('--orbit-y', `${progress * 8}px`)
       if (!reducedMotion.matches) {
         visual.classList.add('is-scrolling')
         clearTimeout(pulseTimer)
-        pulseTimer = window.setTimeout(() => visual.classList.remove('is-scrolling'), 1250)
+        pulseTimer = window.setTimeout(() => visual.classList.remove('is-scrolling'), 3200)
       }
     }
 
@@ -72,7 +72,7 @@ function App() {
       <section className="hero" id="inicio">
         <div className="hero-copy">
           <p className="practice-note">Carolina Alcântara · Advocacia e Consultoria Jurídica</p>
-          <h1>Advocacia tributária e empresarial.</h1>
+          <h1 className="blur-in">Advocacia tributária e empresarial.</h1>
           <p className="hero-text">Estratégia, prevenção e segurança jurídica para empresas e empresários.</p>
           <div className="hero-actions">
             <a className="button primary" href="#contato">Agendar uma conversa <Arrow /></a>
@@ -104,6 +104,9 @@ function App() {
       </section>
 
       <section className="about" id="sobre">
+        <figure className="about-image">
+          <img src="/assets/carolina-alcantara-about.png" alt="Carolina Alcântara trabalhando em seu escritório" />
+        </figure>
         <div className="about-copy">
           <h2>Carolina Alcântara</h2>
           <p>Sou Carolina Alcântara, advogada tributária e empresarial. Ajudo empresas a regularizar dívidas tributárias, evitar impostos desnecessários, reduzir riscos e estruturar contratos mais seguros.</p>
