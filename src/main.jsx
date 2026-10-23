@@ -157,8 +157,21 @@ function App() {
 
     <footer>
       <a className="brand footer-brand" href="#inicio"><img className="brand-logo" src="/assets/carolina-alcantara-logo.png" alt="Carolina Alcântara — Advocacia e Consultoria Jurídica" /></a>
-      <p>Conteúdo demonstrativo. Não substitui consulta jurídica.</p>
-      <p>© {new Date().getFullYear()} · Todos os direitos reservados</p>
+      <div className="footer-socials" role="group" aria-label="Redes sociais">
+        <button type="button" disabled aria-label="Instagram — link em breve" title="Instagram — link em breve">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg>
+        </button>
+        <button type="button" disabled aria-label="LinkedIn — link em breve" title="LinkedIn — link em breve">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7.5 10v7M11 17v-7m0 3a3 3 0 0 1 6 0v4"/><circle cx="7.5" cy="7" r=".8" fill="currentColor" stroke="none"/></svg>
+        </button>
+        <button type="button" disabled aria-label="Facebook — link em breve" title="Facebook — link em breve">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M14 21V10c0-2 1-3 3-3h1M10 12h7"/></svg>
+        </button>
+      </div>
+      <div className="footer-credits">
+        <p>© {new Date().getFullYear()} · Todos os direitos reservados</p>
+        <p>Desenvolvido por Bruno Olegário</p>
+      </div>
     </footer>
   </>
 }
