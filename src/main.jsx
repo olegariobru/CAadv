@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 
@@ -7,6 +7,46 @@ const Arrow = () => <span aria-hidden="true">↗</span>
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeArea, setActiveArea] = useState(0)
+  const heroVisualRef = useRef(null)
+
+  useEffect(() => {
+    const visual = heroVisualRef.current
+    if (!visual) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let frame
+    let pulseTimer
+
+    const updateOrbits = () => {
+      frame = undefined
+      const rect = visual.getBoundingClientRect()
+      const progress = Math.max(-1, Math.min(1, (window.innerHeight * 0.5 - rect.top) / window.innerHeight))
+      visual.style.setProperty('--orbit-turn', `${progress * 22}deg`)
+      visual.style.setProperty('--orbit-y', `${progress * 24}px`)
+      if (!reducedMotion.matches) {
+        visual.classList.add('is-scrolling')
+        clearTimeout(pulseTimer)
+        pulseTimer = window.setTimeout(() => visual.classList.remove('is-scrolling'), 1250)
+      }
+    }
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(updateOrbits)
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      visual.classList.toggle('orbits-visible', entry.isIntersecting)
+    }, { threshold: 0.15 })
+
+    observer.observe(visual)
+    updateOrbits()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      if (frame) cancelAnimationFrame(frame)
+      clearTimeout(pulseTimer)
+    }
+  }, [])
 
   const areas = [
     { number: '01', title: 'Direito de Família', text: 'Orientação cuidadosa em divórcios, guarda, pensão, inventários e acordos — com atenção ao que importa além do processo.' },
@@ -40,7 +80,7 @@ function App() {
             <a className="text-link" href="#atuacao">Conheça minha atuação <span>↓</span></a>
           </div>
         </div>
-        <div className="hero-visual" aria-label="Espaço reservado para o retrato profissional da advogada">
+        <div className="hero-visual" ref={heroVisualRef} aria-label="Espaço reservado para o retrato profissional da advogada">
           <div className="arch"><div className="portrait-placeholder"><span>Sua foto<br/>aqui</span></div></div>
           <span className="orbit orbit-one" />
           <span className="orbit orbit-two" />
