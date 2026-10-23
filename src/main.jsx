@@ -49,16 +49,15 @@ function App() {
   }, [])
 
   const areas = [
-    { number: '01', title: 'Direito de Família', text: 'Orientação cuidadosa em divórcios, guarda, pensão, inventários e acordos — com atenção ao que importa além do processo.' },
-    { number: '02', title: 'Direito Civil', text: 'Análise e condução de contratos, responsabilidade civil e conflitos patrimoniais, sempre com estratégia e linguagem objetiva.' },
-    { number: '03', title: 'Planejamento Patrimonial', text: 'Organização jurídica do patrimônio e da sucessão para proteger escolhas, prevenir conflitos e construir tranquilidade.' }
+    { number: '01', title: 'Direito Tributário', text: 'Orientação para empresas que precisam regularizar dívidas tributárias, avaliar a incidência de impostos e reduzir riscos fiscais.' },
+    { number: '02', title: 'Direito Empresarial', text: 'Consultoria para contratos mais seguros e decisões empresariais tomadas com análise jurídica e atenção aos riscos.' },
+    { number: '03', title: 'Consultoria Preventiva', text: 'Estratégia, prevenção e segurança jurídica para empresas e empresários antes que o problema se transforme em litígio.' }
   ]
 
   return <>
     <header className="topbar">
       <a className="brand" href="#inicio" aria-label="Início">
-        <span className="brand-mark">MA</span>
-        <span>Marina Azevedo<small>Advocacia</small></span>
+        <img className="brand-logo" src="/assets/carolina-alcantara-logo.png" alt="Carolina Alcântara — Advocacia e Consultoria Jurídica" />
       </a>
       <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen}>Menu</button>
       <nav className={menuOpen ? 'open' : ''} aria-label="Navegação principal">
@@ -72,26 +71,19 @@ function App() {
     <main>
       <section className="hero" id="inicio">
         <div className="hero-copy">
-          <p className="practice-note">Direito de família · Direito civil · Patrimônio</p>
-          <h1>Advocacia para decisões de família, patrimônio e relações civis.</h1>
-          <p className="hero-text">Atendimento jurídico para compreender o seu caso, avaliar os caminhos possíveis e conduzir cada etapa com informação clara.</p>
+          <p className="practice-note">Carolina Alcântara · Advocacia e Consultoria Jurídica</p>
+          <h1>Advocacia tributária e empresarial.</h1>
+          <p className="hero-text">Estratégia, prevenção e segurança jurídica para empresas e empresários.</p>
           <div className="hero-actions">
             <a className="button primary" href="#contato">Agendar uma conversa <Arrow /></a>
-            <a className="text-link" href="#atuacao">Conheça minha atuação <span>↓</span></a>
           </div>
         </div>
         <div className="hero-visual" ref={heroVisualRef} aria-label="Espaço reservado para o retrato profissional da advogada">
-          <div className="arch"><div className="portrait-placeholder"><span>Sua foto<br/>aqui</span></div></div>
+          <div className="arch"><img className="portrait" src="/assets/carolina-alcantara-portrait.png" alt="Carolina Alcântara em seu escritório" /></div>
           <span className="orbit orbit-one" />
           <span className="orbit orbit-two" />
         </div>
-        <p className="provisional">Modelo demonstrativo — nome, OAB, textos e imagem serão personalizados.</p>
-      </section>
-
-      <section className="statement">
-        <p className="section-index">01 — Propósito</p>
-        <h2>Antes de indicar um caminho, é preciso entender o que está em jogo.</h2>
-        <p>O atendimento começa pela análise do contexto, dos documentos e das prioridades de cada pessoa. A orientação é apresentada em linguagem direta, incluindo alternativas e riscos.</p>
+        <p className="provisional">Carolina Alcântara · OAB/SP 485.968</p>
       </section>
 
       <section className="areas" id="atuacao">
@@ -112,14 +104,11 @@ function App() {
       </section>
 
       <section className="about" id="sobre">
-        <div className="about-card">
-          <div className="about-photo"><span>Retrato profissional</span></div>
-        </div>
         <div className="about-copy">
-          <h2>Quem estará ao seu lado no atendimento</h2>
-          <p>Sou Marina Azevedo, advogada com atuação voltada à construção de soluções jurídicas consistentes e possíveis. Acredito em um atendimento atento, que considera cada história antes de indicar qualquer caminho.</p>
-          <p>Minha prática une estudo permanente, comunicação transparente e presença em todas as etapas — do primeiro contato à resolução.</p>
-          <div className="signature">Marina Azevedo <small>OAB/UF 00.000 · dado provisório</small></div>
+          <h2>Carolina Alcântara</h2>
+          <p>Sou Carolina Alcântara, advogada tributária e empresarial. Ajudo empresas a regularizar dívidas tributárias, evitar impostos desnecessários, reduzir riscos e estruturar contratos mais seguros.</p>
+          <p>O trabalho é voltado à estratégia, à prevenção e à segurança jurídica de empresas e empresários.</p>
+          <div className="signature">Carolina Alcântara <small>OAB/SP 485.968</small></div>
         </div>
       </section>
 
@@ -139,8 +128,8 @@ function App() {
 
       <section className="contact" id="contato">
         <div className="contact-copy">
-          <h2>Conte brevemente qual orientação jurídica você procura.</h2>
-          <p>Conte brevemente o que você precisa. Retornarei para combinarmos o melhor caminho para o atendimento.</p>
+          <h2>Converse sobre a necessidade da sua empresa.</h2>
+          <p>Descreva brevemente a questão tributária ou empresarial. O retorno será feito para combinar o atendimento.</p>
           <a className="button sand" href="mailto:contato@exemplo.com">Enviar uma mensagem <Arrow /></a>
         </div>
         <div className="contact-details">
@@ -152,7 +141,7 @@ function App() {
     </main>
 
     <footer>
-      <a className="brand footer-brand" href="#inicio"><span className="brand-mark">MA</span><span>Marina Azevedo<small>Advocacia</small></span></a>
+      <a className="brand footer-brand" href="#inicio"><img className="brand-logo" src="/assets/carolina-alcantara-logo.png" alt="Carolina Alcântara — Advocacia e Consultoria Jurídica" /></a>
       <p>Conteúdo demonstrativo. Não substitui consulta jurídica.</p>
       <p>© {new Date().getFullYear()} · Todos os direitos reservados</p>
     </footer>
