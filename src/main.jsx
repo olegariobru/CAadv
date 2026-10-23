@@ -1,38 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 
 const Arrow = () => <span aria-hidden="true">↗</span>
 
-function useReveal() {
-  useEffect(() => {
-    const items = document.querySelectorAll('[data-reveal]')
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('is-visible')),
-      { threshold: 0.12 }
-    )
-    items.forEach(item => observer.observe(item))
-    return () => observer.disconnect()
-  }, [])
-}
-
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeArea, setActiveArea] = useState(0)
-  const heroRef = useRef(null)
-  useReveal()
-
-  useEffect(() => {
-    const move = event => {
-      if (!heroRef.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-      const rect = heroRef.current.getBoundingClientRect()
-      heroRef.current.style.setProperty('--mx', `${(event.clientX - rect.left) / rect.width * 100}%`)
-      heroRef.current.style.setProperty('--my', `${(event.clientY - rect.top) / rect.height * 100}%`)
-    }
-    const node = heroRef.current
-    node?.addEventListener('pointermove', move)
-    return () => node?.removeEventListener('pointermove', move)
-  }, [])
 
   const areas = [
     { number: '01', title: 'Direito de Família', text: 'Orientação cuidadosa em divórcios, guarda, pensão, inventários e acordos — com atenção ao que importa além do processo.' },
@@ -56,37 +30,35 @@ function App() {
     </header>
 
     <main>
-      <section className="hero" id="inicio" ref={heroRef}>
-        <div className="hero-copy" data-reveal>
-          <p className="eyebrow"><span /> Advocacia humana e estratégica</p>
-          <h1>Clareza para decidir.<br/><em>Estratégia</em> para avançar.</h1>
-          <p className="hero-text">Orientação jurídica próxima, segura e descomplicada para proteger seus direitos, seu patrimônio e as decisões que movem a sua vida.</p>
+      <section className="hero" id="inicio">
+        <div className="hero-copy">
+          <p className="practice-note">Direito de família · Direito civil · Patrimônio</p>
+          <h1>Advocacia para decisões de família, patrimônio e relações civis.</h1>
+          <p className="hero-text">Atendimento jurídico para compreender o seu caso, avaliar os caminhos possíveis e conduzir cada etapa com informação clara.</p>
           <div className="hero-actions">
             <a className="button primary" href="#contato">Agendar uma conversa <Arrow /></a>
             <a className="text-link" href="#atuacao">Conheça minha atuação <span>↓</span></a>
           </div>
         </div>
-        <div className="hero-visual" aria-label="Composição abstrata inspirada em equilíbrio e precisão">
+        <div className="hero-visual" aria-label="Espaço reservado para o retrato profissional da advogada">
           <div className="arch"><div className="portrait-placeholder"><span>Sua foto<br/>aqui</span></div></div>
           <span className="orbit orbit-one" />
           <span className="orbit orbit-two" />
-          <div className="seal">Ética <i>•</i> Presença <i>•</i> Estratégia <i>•</i></div>
         </div>
         <p className="provisional">Modelo demonstrativo — nome, OAB, textos e imagem serão personalizados.</p>
       </section>
 
-      <section className="statement" data-reveal>
+      <section className="statement">
         <p className="section-index">01 — Propósito</p>
-        <blockquote>Questões jurídicas não precisam ser sinônimo de distância ou incerteza.</blockquote>
-        <p>Meu papel é traduzir a complexidade, antecipar caminhos e oferecer uma orientação que faça sentido para a sua realidade.</p>
+        <h2>Antes de indicar um caminho, é preciso entender o que está em jogo.</h2>
+        <p>O atendimento começa pela análise do contexto, dos documentos e das prioridades de cada pessoa. A orientação é apresentada em linguagem direta, incluindo alternativas e riscos.</p>
       </section>
 
       <section className="areas" id="atuacao">
-        <div className="section-heading" data-reveal>
-          <p className="eyebrow"><span /> Áreas de atuação</p>
-          <h2>Conhecimento técnico.<br/><em>Olhar individual.</em></h2>
+        <div className="section-heading">
+          <h2>Assuntos em que posso orientar você</h2>
         </div>
-        <div className="area-layout" data-reveal>
+        <div className="area-layout">
           <div className="area-list">
             {areas.map((area, index) => <button key={area.title} className={activeArea === index ? 'active' : ''} onClick={() => setActiveArea(index)}>
               <span>{area.number}</span>{area.title}<b>↗</b>
@@ -100,13 +72,11 @@ function App() {
       </section>
 
       <section className="about" id="sobre">
-        <div className="about-card" data-reveal>
+        <div className="about-card">
           <div className="about-photo"><span>Retrato profissional</span></div>
-          <div className="quote-mark">“</div>
         </div>
-        <div className="about-copy" data-reveal>
-          <p className="eyebrow light"><span /> Sobre</p>
-          <h2>Direito se faz com técnica.<br/><em>E também com escuta.</em></h2>
+        <div className="about-copy">
+          <h2>Quem estará ao seu lado no atendimento</h2>
           <p>Sou Marina Azevedo, advogada com atuação voltada à construção de soluções jurídicas consistentes e possíveis. Acredito em um atendimento atento, que considera cada história antes de indicar qualquer caminho.</p>
           <p>Minha prática une estudo permanente, comunicação transparente e presença em todas as etapas — do primeiro contato à resolução.</p>
           <div className="signature">Marina Azevedo <small>OAB/UF 00.000 · dado provisório</small></div>
@@ -114,27 +84,26 @@ function App() {
       </section>
 
       <section className="method" id="metodo">
-        <div className="section-heading" data-reveal>
-          <p className="eyebrow"><span /> Como funciona</p>
-          <h2>Você entende cada passo.<br/><em>Desde o primeiro.</em></h2>
+        <div className="section-heading method-heading">
+          <h2>Do primeiro relato ao encaminhamento jurídico</h2>
+          <p>Este fluxo é provisório e será ajustado ao modo de trabalho real da profissional.</p>
         </div>
         <div className="steps">
           {[
             ['01', 'Escuta', 'Uma conversa inicial para compreender sua situação, prioridades e expectativas.'],
             ['02', 'Diagnóstico', 'Análise jurídica transparente, com riscos, possibilidades e próximos passos bem definidos.'],
             ['03', 'Estratégia', 'Um plano de ação personalizado, conduzido com acompanhamento próximo e comunicação clara.']
-          ].map(step => <article key={step[0]} data-reveal><span>{step[0]}</span><div className="step-icon">{step[0] === '01' ? '◡' : step[0] === '02' ? '◇' : '↗'}</div><h3>{step[1]}</h3><p>{step[2]}</p></article>)}
+          ].map(step => <article key={step[0]}><span>{step[0]}</span><h3>{step[1]}</h3><p>{step[2]}</p></article>)}
         </div>
       </section>
 
       <section className="contact" id="contato">
-        <div className="contact-copy" data-reveal>
-          <p className="eyebrow light"><span /> Vamos conversar</p>
-          <h2>Seu próximo passo pode começar com uma <em>boa conversa.</em></h2>
+        <div className="contact-copy">
+          <h2>Conte brevemente qual orientação jurídica você procura.</h2>
           <p>Conte brevemente o que você precisa. Retornarei para combinarmos o melhor caminho para o atendimento.</p>
           <a className="button sand" href="mailto:contato@exemplo.com">Enviar uma mensagem <Arrow /></a>
         </div>
-        <div className="contact-details" data-reveal>
+        <div className="contact-details">
           <div><small>ATENDIMENTO</small><p>Online para todo o Brasil<br/>Presencial com agendamento</p></div>
           <div><small>CONTATO PROVISÓRIO</small><p>(00) 00000-0000<br/>contato@exemplo.com</p></div>
           <div><small>HORÁRIOS</small><p>Segunda a sexta<br/>9h às 18h</p></div>
