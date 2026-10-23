@@ -5,6 +5,15 @@ import './styles.css'
 const Arrow = () => <span aria-hidden="true">↗</span>
 
 function App() {
+  const [introVisible, setIntroVisible] = useState(true)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIntroVisible(false)
+      return
+    }
+    const timer = window.setTimeout(() => setIntroVisible(false), 1600)
+    return () => window.clearTimeout(timer)
+  }, [])
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeArea, setActiveArea] = useState(0)
   const heroVisualRef = useRef(null)
@@ -55,6 +64,9 @@ function App() {
   ]
 
   return <>
+    {introVisible && <div className="brand-intro" aria-hidden="true">
+      <img src="/assets/carolina-alcantara-logo.png" alt="" />
+    </div>}
     <header className="topbar">
       <a className="brand" href="#inicio" aria-label="Início">
         <img className="brand-logo" src="/assets/carolina-alcantara-logo.png" alt="Carolina Alcântara — Advocacia e Consultoria Jurídica" />
@@ -78,7 +90,7 @@ function App() {
             <a className="button primary" href="#contato">Agendar uma conversa <Arrow /></a>
           </div>
         </div>
-        <div className="hero-visual" ref={heroVisualRef} aria-label="Espaço reservado para o retrato profissional da advogada">
+        <div className="hero-visual" ref={heroVisualRef} aria-label="Retrato profissional de Carolina Alcântara">
           <div className="arch"><img className="portrait" src="/assets/carolina-alcantara-portrait.png" alt="Carolina Alcântara em seu escritório" /></div>
           <span className="orbit orbit-one" />
           <span className="orbit orbit-two" />

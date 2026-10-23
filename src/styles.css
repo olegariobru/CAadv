@@ -16,4 +16,17 @@ footer{padding:34px 5vw;display:flex;align-items:center;justify-content:space-be
 .blur-in{animation:text-blur-in .6s cubic-bezier(0,0,.2,1) both}@keyframes text-blur-in{from{opacity:0;filter:blur(12px)}to{opacity:1;filter:blur(0)}}.arch{border-radius:22px}.portrait{border-radius:18px}.is-scrolling .orbit-one{animation:orbit-pulse-one 3.2s cubic-bezier(.65,0,.35,1) infinite}.is-scrolling .orbit-two{animation:orbit-pulse-two 3.2s cubic-bezier(.65,0,.35,1) infinite}@keyframes orbit-pulse-one{50%{transform:translate3d(0,var(--orbit-y),0) rotate(calc(25deg + var(--orbit-turn))) scale(1.02)}}@keyframes orbit-pulse-two{50%{transform:translate3d(0,calc(0px - var(--orbit-y)),0) rotate(calc(-12deg - var(--orbit-turn))) scale(1.02)}}.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.about-image{margin:0;min-height:640px;overflow:hidden}.about-image img{width:100%;height:100%;object-fit:cover;object-position:center}.about-copy{padding:120px 8vw}
 @media(max-width:800px){.topbar{height:76px}.brand-logo{width:168px;height:64px}.menu-button{display:block}.topbar nav{display:none;position:absolute;top:76px;left:0;right:0;padding:28px 5vw;background:var(--paper);flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}.topbar nav.open{display:flex}.hero{grid-template-columns:1fr;padding-top:70px}.hero-visual{height:520px;margin-top:30px}.hero-copy h1{font-size:46px}.provisional{position:static;grid-column:1;margin-top:24px}.statement{grid-template-columns:1fr;padding:90px 8vw}.statement>p:last-child{margin-top:0}.area-layout,.about,.contact,.method-heading{grid-template-columns:1fr}.area-detail{margin:35px 0 0}.about-card{min-height:560px}.steps article{grid-template-columns:42px 1fr}.steps article p{grid-column:2}.contact{padding:90px 8vw}.contact-details{margin-top:50px}footer{align-items:flex-start;gap:25px;flex-direction:column}.footer-brand{margin-bottom:10px}.footer-brand .brand-logo{width:230px}}
 @media(max-width:800px){.about-image{min-height:460px}.about-copy{padding:80px 8vw}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+/* Warm plaster and soft light inspired by the office photographs. */
+:root{--paper:#f3eade;--warm:#e9ddce}
+body{background-color:var(--paper);background-image:radial-gradient(ellipse at 90% 12%,rgba(194,145,84,.13),transparent 55%),linear-gradient(115deg,rgba(255,251,241,.7),transparent 42%,rgba(158,117,77,.06));background-attachment:fixed}
+.hero,.areas,.about,.method,.contact,footer{background:transparent}
+.topbar{background:#f3eade}
+.arch{width:80%;height:76%;padding:0;border-radius:48% 48% 42% 42% / 38% 38% 55% 55%;overflow:hidden}
+.portrait{display:block;border:0;border-radius:0;object-position:50% 30%}
+.brand-intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:#f3eade;pointer-events:none;animation:intro-exit .45s ease-in 1.05s both}
+.brand-intro img{width:min(68vw,340px);height:auto;animation:intro-logo .7s cubic-bezier(.16,1,.3,1) both}
+.blur-in{animation-delay:1.1s}
+@keyframes intro-logo{from{opacity:0;filter:blur(7px);transform:scale(.97)}to{opacity:1;filter:blur(0);transform:scale(1)}}
+@keyframes intro-exit{to{opacity:0;visibility:hidden}}
+@media(max-width:800px){.arch{width:78%;height:82%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.brand-intro{display:none}.orbit-one{transform:rotate(25deg)}.orbit-two{transform:rotate(-12deg)}}
