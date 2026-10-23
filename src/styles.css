@@ -17,6 +17,9 @@ footer{padding:34px 5vw;display:flex;align-items:center;justify-content:space-be
 @media(max-width:800px){.topbar{height:76px}.brand-logo{width:168px;height:64px}.menu-button{display:block}.topbar nav{display:none;position:absolute;top:76px;left:0;right:0;padding:28px 5vw;background:var(--paper);flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}.topbar nav.open{display:flex}.hero{grid-template-columns:1fr;padding-top:70px}.hero-visual{height:520px;margin-top:30px}.hero-copy h1{font-size:46px}.provisional{position:static;grid-column:1;margin-top:24px}.statement{grid-template-columns:1fr;padding:90px 8vw}.statement>p:last-child{margin-top:0}.area-layout,.about,.contact,.method-heading{grid-template-columns:1fr}.area-detail{margin:35px 0 0}.about-card{min-height:560px}.steps article{grid-template-columns:42px 1fr}.steps article p{grid-column:2}.contact{padding:90px 8vw}.contact-details{margin-top:50px}footer{align-items:flex-start;gap:25px;flex-direction:column}.footer-brand{margin-bottom:10px}.footer-brand .brand-logo{width:230px}}
 @media(max-width:800px){.about-image{min-height:460px}.about-copy{padding:80px 8vw}}
 /* Warm plaster and soft light inspired by the office photographs. */
+.arrow-icon{display:inline-block;width:15px;height:15px;margin-left:14px;flex:0 0 auto;vertical-align:-2px}
+.area-arrow{display:grid;place-items:center}.area-arrow .arrow-icon{margin-left:0}
+@media(max-width:800px){.arrow-icon{width:14px;height:14px}.area-arrow .arrow-icon{width:13px;height:13px}}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:url('/assets/arches-pattern.svg');background-size:520px 740px;background-position:right top;background-repeat:repeat;opacity:.13;z-index:-1}
 body{isolation:isolate}
 .section-entered .area-list button,.section-entered .steps article{animation:section-arrive .5s cubic-bezier(.22,1,.36,1) both}
